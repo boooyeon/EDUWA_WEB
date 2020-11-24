@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="assets/main.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <script src="js/snow.js"></script>
+    <style>
+      /* customizable snowflake styling */
+
+      html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+          /* background: linear-gradient(#FFEFBA, #FFFFFF) fixed; */
+          background: #b1afa8;  /* fallback for old browsers */
+          background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      }
+
+      .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial, sans-serif;
+        text-shadow: 0 0 5px #000;
+      }
+
+
+      #ment_container{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+      }
+
+      #middle_container{
+          text-align: center;
+          margin-top: 15%;
+      }
+
+
+      :root {
+        --backgroundColor: rgba(246, 241, 209);
+        --colorShadeA: rgb(106, 163, 137);
+        --colorShadeB: rgb(121, 186, 156);
+        --colorShadeC: rgb(150, 232, 195);
+        --colorShadeD: rgb(187, 232, 211);
+        --colorShadeE: rgb(205, 255, 232);
+      }
+      
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+      * {
+        box-sizing: border-box;
+      }
+      *::before, *::after {
+        box-sizing: border-box;
+      }
+      /* body {
+        font-family: 'OpenSans', sans-serif;
+        font-size: 1rem;
+        line-height: 2;
+        display: flex;
+                align-items: center;
+                justify-content: center;
+        margin: 0;
+        min-height: 100vh;
+        background: var(--backgroundColor);
+      } */
+      button {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        font-size: 1.5rem;
+          color:var(--colorShadeA);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: inherit;
+      }
+      
+      button.big-button {
+        padding: 1em 2em;
+        border: 2px solid var(--colorShadeA);
+        border-radius: 1em;
+        background: var(--colorShadeE);
+      transform-style: preserve-3d;
+        transition: all 175ms cubic-bezier(0, 0, 1, 1);
+      }
+      button.big-button::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--colorShadeC);
+        border-radius: inherit;
+          box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
+      transform: translate3d(0, 0.75em, -1em);
+          transition: all 175ms cubic-bezier(0, 0, 1, 1);
+      }
+      
+      
+      button.big-button:hover {
+        background: var(--colorShadeD);
+        transform: translate(0, 0.375em);
+      }
+      
+      button.big-button:hover::before {
+        transform: translate3d(0, 0.75em, -1em);
+      }
+      
+      button.big-button:active {
+                  transform: translate(0em, 0.75em);
+      }
+      
+      button.big-button:active::before {
+        transform: translate3d(0, 0, -1em);
+        
+            box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
+      
+      }
+
+      @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}
+      @-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}
+      @keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}
+      @keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}
+      .snowflake{
+        position:fixed;
+        top:-10%;
+        z-index:9999;
+        -webkit-user-select:none;
+        -moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:4s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running;
+      }
+
+      </style>
+
+</head>
+<body>
+  <div id="ment_container">
+    <div id="middle_container">
+      <h1 id="ment">안녕</h1>
+      <button class="big-button" id="go_home" onclick="location.href = '{% url "home" %}'">!!</button>
+      <!-- <h1 id="go_home">하 </h1> -->
+    </div>
+  </div>
+    
+
+  <div id="snowflakes" aria-hidden="true">
+    <div class="snowflake">
+      <img src="assets/1.png" width="20">
+    </div>
+    <div class="snowflake">
+      <img src="assets/2.png" width="20">
+    </div>
+    <div class="snowflake">
+      <img src="assets/3.png" width="20">
+    </div>
+    <div class="snowflake">
+      <img src="assets/4.png" width="20">
+    </div>
+  </div>
+
+  
+</body>
+<script type="text/javascript">  
+  var Request = function() {  
+      this.getParameter = function(name) {  
+          var rtnval = '';  
+          var nowAddress = unescape(location.href);  
+          var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+                  nowAddress.length)).split('&');  
+          for (var i = 0; i < parameters.length; i++) {  
+              var varName = parameters[i].split('=')[0];  
+              if (varName.toUpperCase() == name.toUpperCase()) {  
+                  rtnval = parameters[i].split('=')[1];  
+                  break;  
+              }  
+          }  
+          return rtnval;  
+      }  
+  }  
+  var request = new Request();  
+</script>  
+
+<script>
+  var div = document.getElementById("snowflakes");
+  var divs = document.getElementsByClassName("snowflake");
+  for(var i=0;i<50;i++){
+    div.appendChild(divs[0].cloneNode(true));
+    div.appendChild(divs[1].cloneNode(true));
+    div.appendChild(divs[2].cloneNode(true));
+  }
+  divs = document.getElementsByClassName("snowflake");
+  console.log(divs);
+  for(var j=0;j<divs.length;j++){
+    var x = Math.floor(Math.random()*100);
+    var delays = Math.random()*10;
+    divs[j].style.left = x + "%";
+    divs[j].style["animation-delay"] = delays + 's';
+    divs[j].style["-webkit-animation-delay"] = delays + 's';
+  }
+</script>
+
+
+
+<script>
+    const ment = document.getElementById('ment'); 
+    const go_home = document.getElementById('go_home');  
+    var paramValue = Number("{{content}}");
+    console.log(paramValue)
+    if(paramValue == 1){
+        ment.innerText = "우리 모두 생활 방역체계를 잘 지켜서 코로나를 예방해 보아요!"
+
+        go_home.innerText ="다른 보건 영상 보러가기"
+    }else if(paramValue == 2){
+        ment.innerText ="재밌게 시청하셨나요?"
+        go_home.innerText ="다른 교육 영상 보러가기"
+    }else{
+        ment.innerText = "멋진 동작이네요!\n하루를 여는데 상쾌한 스트레칭\n우리 모두 꾸준히 하는 거 어때요?"
+        go_home.innerText ="다른 스트레칭 영상 보러가기"
+    }
+
+    function click(){
+      console.log("clickclick");
+      location.href = "{% url 'home' %}";
+    }
+    
+</script>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- /<link rel="stylesheet" href="assets/main.css"> -->
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            /* background: linear-gradient(#FFEFBA, #FFFFFF) fixed; */
+            background: #b1afa8;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div style="display: flex;" class="booth" id="hello">
+        <video style="margin-top: 85px; margin-left: 55px; margin-right: 100px;" autoplay="autoplay" onended="end()" controls id="playplay" src="{% static 'video_demo/streching_morning.mp4' %}" width="600" height="500"></video>
+        <div id="frame" style="margin-top: 85px; border: 20px solid grey; width: 702; height: 552;">
+            <video  id="webcam" width="700" height="530" autoplay=""></video>
+        </div>
+        
+        <!-- <canvas id="canvas" width="128" height="128" style="display:none"></canvas> -->
+        <canvas id="canvas" style="display: none;" width="1000" height="700"></canvas>
+
+    </div>
+    <h2 id="label"></h2>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+        var LABELS = ['clap','cross-heel','sting','openclose','downup','wave','shoulder','lunge','','back-cross','knee-up','stand_clap'];
+        var currentStreching = LABELS[0];
+        var value = 1;
+        var count=0;
+        var check = true;
+        const playplay = document.getElementById("playplay");
+        const frame = document.getElementById('frame');
+        playplay.ontimeupdate = function () {myFunction ()};
+
+        function myFunction () {
+        // Display id = "demo" of <p> elements in the video playback position
+            console.log(playplay.currentTime);
+            console.log(currentStreching);
+            var current_time = parseInt(playplay.currentTime);
+            console.log(currentStreching);
+            if(current_time >57 && current_time <=72){
+                if(current_time % 6== 4 &&  current_time != 2){
+                    if(check){
+                        currentStreching = LABELS[value];
+                        check = false;
+                        value++;
+                        frame.style.borderColor = "grey";
+                        count=0;
+                    }
+                      
+            }else{
+                check = true;
+            }
+                
+            }else{
+                if(current_time % 14 == 2 &&  current_time != 2){
+                    if(check){
+                        currentStreching = LABELS[value];
+                        check = false;
+                        value++;
+                        frame.style.borderColor = "grey";
+                        count=0;
+                    }
+                    
+                   
+            }else{
+                check = true;
+            }
+            }
+            
+
+    }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function drawImge(){
+            var video = document.querySelector("#webcam");
+            var canvas = document.querySelector("#canvas");
+            var ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            // var faceArea = 300;
+            // var pX=canvas.width/2 - faceArea/2;
+            // var pY=canvas.height/2 - faceArea/2;
+            // ctx.rect(pX,pY,faceArea,faceArea);
+            // ctx.lineWidth = "6";
+            // ctx.strokeStyle = "red";    
+            // ctx.stroke();
+        }
+
+        function end(){
+            console.log("hello!!!!!!!");
+            location.href = "{% url 'result' 3 %}"//홈페이지 주소 ;
+
+        }
+
+
+        function sendAjax(imageData){
+            $.ajax({
+                url: "http://ec2-13-125-208-57.ap-northeast-2.compute.amazonaws.com:8000/stretch/morning", // 클라이언트가 요청을 보낼 서버의 URL 주소
+                type: "POST",
+                data:{
+                    imageBase64: imageData
+                }
+            })
+            // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+            .done(function(json) {
+                console.log(json);
+                if(json["label"] == currentStreching){
+                    frame.style.borderColor = "green";
+                    count=0;
+                }else{
+                    console.log("count:"+count)
+                    if(count > 6){
+                        frame.style.borderColor = "red";
+                    }else{
+                        count++;
+                    }
+                }
+               
+            })
+            // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨.
+            .fail(function(xhr, status, errorThrown) {
+                console.log("error");
+            })
+        }
+
+        var video;
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const minPartConfidence = 0.7;
+        const minPoseConfidence = 0.4;
+        var label = document.querySelector("#label");
+        var count = 0;
+        var interval;
+        
+
+
+        init();
+        async function init() {
+            video = document.getElementById('webcam'),
+            
+            navigator.getMedia =  navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetuserMedia ||
+            navigator.msGetUserMedia;
+            navigator.getMedia({
+                video: true,
+                audio: false
+            }, function(stream) {
+                video.srcObject=stream;
+                video.play();
+            }, function(error) {
+                // an error occurred
+            } );
+
+            video.addEventListener('play', async function() {
+                // draw( this, context, video.width, video.height );
+                interval = setInterval(sendImage, 500);
+            }, false );
+
+        }
+
+        
+
+        async function sendImage() {
+            var image, data, i, r, g, b, brightness;
+
+            // var imgData = context.getImageData(0, 0, video.width, video.height);
+            // context.drawImage(video, 0, 0, video.width, video.height);/
+
+            var dataURL = canvas.toDataURL();
+            // var imageData = context.getImageData(0, 0, video.width, video.height);
+            await sendAjax(dataURL);
+            console.log("찰칵");
+            drawImge();
+            // setTimeout( draw, 10, video, context, width, height );
+        }
+
+        // function stop(){
+        //     clearInterval(interval);
+        // }
+        
+    </script>
+ 
+</body>
+ 
+</html>

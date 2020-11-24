@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <style type="text/css">
+            .rolling_panel { position: relative; width: 100%; height: 25%; margin: 0; padding: 0;  overflow: hidden; }
+            .rolling_panel ul { position: absolute; margin: 5px; padding: 0; list-style: none; }
+            .rolling_panel ul li { float: left; width: 205px; height: 140px;}
+        </style>
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/main.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="holymoly">
+            <div class="search-box">
+                <input type="text" class="search-txt" name=""placeholder="Type to search">
+                <a class="search-btn" href="#">
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            
+        </div>
+        <div class="header">
+            <div class="navbar">
+                <div class="navbar-collapse">
+
+                    <div id="cococo">
+
+                        <div id="logo_container"> 
+                            <img id="logo" src="{% static 'assets/eduwa_logo.png' %}" width="120" height="120" />
+                        </div>
+    
+    
+    
+                        <div class="nav navbar-nav nav-right">
+                        
+                        <div class="dropdown">
+                            <img id="icon" src="{% static 'assets/icon/girl.png' %}" ></img>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#child">유아<b class="caret"></b></a>
+                        </div>
+                        <div class="dropdown">
+                            <img id="icon" src="{% static 'assets/icon/student.png' %}" ></img>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#elem">초등<b class="caret"></b></a>
+                            <div class="dropdown-content">
+                            <a href="#">국어</a>
+                            <a href="#">영어</a>
+                            <a href="#">수학</a>
+                            <a href="#">역사</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <img id="icon" src="{% static 'assets/icon/old_people.png' %}" ></img>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#senior">노인<b class="caret"></b></a>
+                        </div>
+                        <div class="dropdown">
+                            <img id="icon" src="{% static 'assets/icon/rehabilitation.png' %}" ></img>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#game">재활<b class="caret"></b></a>
+                        </div>
+                        <div class="dropdown">
+                            <img id="icon" src="{% static 'assets/icon/motion.png' %}" ></img>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#game">모션게임<b class="caret"></b></a>
+                        </div>
+                       
+                        <!-- <li>
+                            <a class="page-scroll" href="#senior">노인</a>
+                        </li> -->
+                    </div>
+
+
+
+
+
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+        <!-- <a href="javascript:void(0)" id="prev">이전</a>
+        <a href="javascript:void(0)" id="next">다음</a> -->
+
+        <div class= "rolling_name">운동 컨텐츠</div>
+        <div class="rolling_panel">
+            <ul>
+                <li><a href="{% url 'stretch' %}"> <img src="{% static 'assets/streching/streching1_thumbnail.jpg' %}"></a></li>
+                <li><img src="{% static 'assets/streching/streching2_thumbnail.jpg' %}"></li>
+                <li><img src="{% static 'assets/streching/streching3_thumbnail.jpg' %}"></li>
+                <li><img src="{% static 'assets/streching/streching4_thumbnail.jpg' %}"></li>
+                <li><img src="{% static 'assets/streching/streching5_thumbnail.jpg' %}"></li>
+                <li><img src="{% static 'assets/streching/streching6_thumbnail.jpg' %}"></li>
+                <li><img src="{% static 'assets/streching/streching7_thumbnail.jpg' %}"></li>
+       
+            </ul>
+        </div>
+
+
+
+
+
+        <div class="main">
+            <div class= "rolling_name">교육 컨텐츠</div>
+            <div class="rolling_panel">
+                <ul>
+                  
+                    <li><a href="{% url 'edu' %}"><img src="{% static 'assets/history/history1_thumbnail.jpg' %}" ></a></li>
+                    <li><img src="{% static 'assets/history/history2_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/history/history3_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/history/history4_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/history/history5_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/history/history6_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/history/history7_thumbnail.jpg' %}"></li>
+               
+                   
+                </ul>
+            </div>
+            <div class= "rolling_name">보건 컨텐츠</div>
+            <div class="rolling_panel">
+                <ul>
+                    <li><a href="{% url 'health' %}"><img src="{% static 'assets/health/health1_thumbnail.jpg' %}" ></a></li>
+                    <li><img src="{% static 'assets/health/health2_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/health/health3_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/health/health4_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/health/health5_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/health/health6_thumbnail.jpg' %}"></li>
+                    <li><img src="{% static 'assets/health/health7_thumbnail.jpg' %}"></li>
+                    
+                </ul>
+            </div>
+   
+        
+
+
+        </div>
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+ 
+                var $panel = $(".rolling_panel").find("ul");
+ 
+                var itemWidth = $panel.children().outerWidth(); // 아이템 가로 길이
+                var itemLength = $panel.children().length;      // 아이템 수
+ 
+                // Auto 롤링 아이디
+                var rollingId;
+ 
+                auto();
+ 
+                // 배너 마우스 오버 이벤트
+                $panel.mouseover(function() {
+                    clearInterval(rollingId);
+                });
+ 
+                // 배너 마우스 아웃 이벤트
+                $panel.mouseout(function() {
+                    auto();
+                });
+ 
+                // // 이전 이벤트
+                // $("#prev").on("click", prev);
+ 
+                // $("#prev").mouseover(function(e) {
+                //     clearInterval(rollingId);
+                // });
+ 
+                // $("#prev").mouseout(auto);
+ 
+                // // 다음 이벤트
+                // $("#next").on("click", next);
+ 
+                // $("#next").mouseover(function(e) {
+                //     clearInterval(rollingId);
+                // });
+ 
+                // $("#next").mouseout(auto);
+ 
+                function auto() {
+ 
+                    // 2초마다 start 호출
+                    rollingId = setInterval(function() {
+                        start();
+                    }, 2000);
+                }
+ 
+                function start() {
+                    $panel.css("width", itemWidth * itemLength);
+                    $panel.animate({"left": - itemWidth + "px"}, function() {
+ 
+                        // 첫번째 아이템을 마지막에 추가하기
+                        $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+ 
+                        // 첫번째 아이템을 삭제하기
+                        $(this).find("li:first").remove();
+ 
+                        // 좌측 패널 수치 초기화
+                        $(this).css("left", 0);
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
