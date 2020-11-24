@@ -87,6 +87,7 @@ google-auth-oauthlib==0.4.1
 google-pasta==0.2.0
 greenlet @ file:///C:/ci/greenlet_1600874077257/work
 grpcio==1.32.0
+gunicorn==20.0.4
 h5py==2.10.0
 HeapDict==1.0.1
 html5lib @ file:///tmp/build/80754af9/html5lib_1593446221756/work
@@ -307,6 +308,7 @@ webencodings==0.5.1
 websocket-client @ file:///C:/ci/websocket-client_1602006645939/work
 Werkzeug==1.0.1
 wget==3.2
+whitenoise==5.2.0
 widgetsnbextension==3.5.1
 win-inet-pton==1.1.0
 win-unicode-console==0.5
